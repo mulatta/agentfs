@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Required for FSKit file system extensions -->
+    <key>com.apple.developer.fskit.extension</key>
+    <true/>
+
+    <!-- App sandbox (required for system extensions) -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+
+    <!-- Allow reading user-selected files (for database access) -->
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+</dict>
+</plist>

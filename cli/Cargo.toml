@@ -8,6 +8,12 @@ repository = "https://github.com/tursodatabase/agentfs"
 name = "agentfs"
 path = "src/main.rs"
 
+[features]
+default = []
+# Force FUSE even on macOS 26+ (for testing/compatibility)
+# On macOS without this feature, FSKit is used instead
+force-fuse = ["dep:fuser"]
+
 [dependencies]
 agentfs-sdk = { path = "../sdk/rust" }
 tokio = { version = "1", features = ["full"] }
@@ -23,17 +29,14 @@ dirs = "6"
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
 
-# Linux-only dependencies for FUSE functionality
+# Linux-only FUSE dependency (always included on Linux)
 [target.'cfg(target_os = "linux")'.dependencies]
 fuser = { version = "0.15", default-features = false, features = ["abi-7-23"] }
 uuid = { version = "1", features = ["v4"] }
 
-# macOS dependencies for FUSE functionality (requires macFUSE)
+# macOS FUSE dependency (only included with force-fuse feature)
 [target.'cfg(target_os = "macos")'.dependencies]
-fuser = { version = "0.15", default-features = false, features = [
-    "abi-7-23",
-    "libfuse",
-] }
+fuser = { version = "0.15", default-features = false, features = ["abi-7-23", "libfuse"], optional = true }
 
 # Sandbox dependencies - Linux x86_64 only (requires libunwind-ptrace)
 [target.'cfg(all(target_os = "linux", target_arch = "x86_64"))'.dependencies]

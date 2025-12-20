@@ -1,3 +1,10 @@
+//! FUSE-based mount implementation.
+//!
+//! This module is only compiled on Linux, or on macOS when the `force-fuse` feature is enabled.
+//! On macOS without `force-fuse`, the mount_fskit module is used instead.
+
+#![cfg(any(target_os = "linux", all(target_os = "macos", feature = "force-fuse")))]
+
 use agentfs_sdk::{AgentFS, AgentFSOptions, FileSystem, HostFS, OverlayFS};
 use anyhow::Result;
 use std::{os::unix::fs::MetadataExt, path::PathBuf, sync::Arc};

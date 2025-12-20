@@ -1,8 +1,16 @@
+//! FUSE filesystem implementation for AgentFS.
+//!
+//! This module is only compiled on Linux, or on macOS when the `force-fuse` feature is enabled.
+//! On macOS without `force-fuse`, FSKit is used instead (see mount_fskit.rs).
+
+#![cfg(any(target_os = "linux", all(target_os = "macos", feature = "force-fuse")))]
+
 use agentfs_sdk::{FileSystem, FsError, Stats};
+
 use fuser::{
     consts::FUSE_WRITEBACK_CACHE, FileAttr, FileType, Filesystem, KernelConfig, MountOption,
     ReplyAttr, ReplyCreate, ReplyData, ReplyDirectory, ReplyEmpty, ReplyEntry, ReplyOpen,
-    ReplyStatfs, ReplyWrite, Request,
+    ReplyStatfs, ReplyWrite, Request, TimeOrNow,
 };
 use parking_lot::Mutex;
 use std::{
@@ -126,8 +134,8 @@ impl Filesystem for AgentFSFuse {
         _uid: Option<u32>,
         _gid: Option<u32>,
         size: Option<u64>,
-        _atime: Option<fuser::TimeOrNow>,
-        _mtime: Option<fuser::TimeOrNow>,
+        _atime: Option<TimeOrNow>,
+        _mtime: Option<TimeOrNow>,
         _ctime: Option<SystemTime>,
         fh: Option<u64>,
         _crtime: Option<SystemTime>,

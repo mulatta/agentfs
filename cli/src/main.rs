@@ -2,10 +2,13 @@ mod cmd;
 mod parser;
 mod sandbox;
 
-#[cfg(any(target_os = "linux", target_os = "macos"))]
+// Daemon module for background mounting (FUSE only)
+#[cfg(any(target_os = "linux", all(target_os = "macos", feature = "force-fuse")))]
 mod daemon;
 
-#[cfg(any(target_os = "linux", target_os = "macos"))]
+// FUSE module - only on Linux or macOS with force-fuse feature
+// On macOS without force-fuse, FSKit is used instead (no kernel extension needed)
+#[cfg(any(target_os = "linux", all(target_os = "macos", feature = "force-fuse")))]
 mod fuse;
 
 use clap::{CommandFactory, Parser};

@@ -1,0 +1,6 @@
+target/
+*.a
+*.dylib
+DerivedData/
+build/
+.DS_Store

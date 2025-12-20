@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		/* Host App */
+		A1000001 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* main.swift */; };
+
+		/* Extension */
+		A1000010 /* AgentFSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000010 /* AgentFSExtension.swift */; };
+		A1000011 /* AgentFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011 /* AgentFileSystem.swift */; };
+		A1000012 /* AgentVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000012 /* AgentVolume.swift */; };
+		A1000013 /* AgentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000013 /* AgentItem.swift */; };
+		A1000014 /* libagentfs_ffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000020 /* libagentfs_ffi.a */; };
+		A1000015 /* FSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2000021 /* FSKit.framework */; };
+
+		/* Embed Extension */
+		A1000030 /* AgentFSExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A3000002 /* AgentFSExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A4000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3000001;
+			remoteInfo = AgentFSExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5000001 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				A1000030 /* AgentFSExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		/* Host App */
+		A2000001 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A2000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3000000 /* AgentFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgentFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+
+		/* Extension */
+		A2000010 /* AgentFSExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentFSExtension.swift; sourceTree = "<group>"; };
+		A2000011 /* AgentFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentFileSystem.swift; sourceTree = "<group>"; };
+		A2000012 /* AgentVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentVolume.swift; sourceTree = "<group>"; };
+		A2000013 /* AgentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentItem.swift; sourceTree = "<group>"; };
+		A2000014 /* agentfs_ffi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = agentfs_ffi.h; sourceTree = "<group>"; };
+		A2000015 /* ExtensionInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ExtensionInfo.plist; sourceTree = "<group>"; };
+		A2000016 /* AgentFSExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentFSExtension.entitlements; sourceTree = "<group>"; };
+		A2000020 /* libagentfs_ffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libagentfs_ffi.a; path = "../fskit-ffi/target/release/libagentfs_ffi.a"; sourceTree = "<group>"; };
+		A2000021 /* FSKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSKit.framework; path = System/Library/Frameworks/FSKit.framework; sourceTree = SDKROOT; };
+		A3000002 /* AgentFSExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentFSExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A6000001 /* Frameworks (Host) */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6000002 /* Frameworks (Extension) */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000014 /* libagentfs_ffi.a in Frameworks */,
+				A1000015 /* FSKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A7000000 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A7000001 /* AgentFS */,
+				A7000002 /* AgentFSExtension */,
+				A7000003 /* Frameworks */,
+				A7000004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A7000001 /* AgentFS */ = {
+			isa = PBXGroup;
+			children = (
+				A2000001 /* main.swift */,
+				A2000002 /* Info.plist */,
+			);
+			path = AgentFS;
+			sourceTree = "<group>";
+		};
+		A7000002 /* AgentFSExtension */ = {
+			isa = PBXGroup;
+			children = (
+				A2000010 /* AgentFSExtension.swift */,
+				A2000011 /* AgentFileSystem.swift */,
+				A2000012 /* AgentVolume.swift */,
+				A2000013 /* AgentItem.swift */,
+				A2000014 /* agentfs_ffi.h */,
+				A2000015 /* ExtensionInfo.plist */,
+				A2000016 /* AgentFSExtension.entitlements */,
+			);
+			path = AgentFSExtension;
+			sourceTree = "<group>";
+		};
+		A7000003 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2000020 /* libagentfs_ffi.a */,
+				A2000021 /* FSKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3000000 /* AgentFS.app */,
+				A3000002 /* AgentFSExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3000001 /* AgentFSExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9000002 /* Build configuration list for PBXNativeTarget "AgentFSExtension" */;
+			buildPhases = (
+				A8000002 /* Sources */,
+				A6000002 /* Frameworks (Extension) */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AgentFSExtension;
+			productName = AgentFSExtension;
+			productReference = A3000002 /* AgentFSExtension.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
+		};
+		A3000003 /* AgentFS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9000001 /* Build configuration list for PBXNativeTarget "AgentFS" */;
+			buildPhases = (
+				A8000001 /* Sources */,
+				A6000001 /* Frameworks (Host) */,
+				A5000001 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4000002 /* PBXTargetDependency */,
+			);
+			name = AgentFS;
+			productName = AgentFS;
+			productReference = A3000000 /* AgentFS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A3000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					A3000003 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A9000000 /* Build configuration list for PBXProject "AgentFS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A7000000 /* Root */;
+			productRefGroup = A7000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3000003 /* AgentFS */,
+				A3000001 /* AgentFSExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000010 /* AgentFSExtension.swift in Sources */,
+				A1000011 /* AgentFileSystem.swift in Sources */,
+				A1000012 /* AgentVolume.swift in Sources */,
+				A1000013 /* AgentItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A4000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3000001 /* AgentFSExtension */;
+			targetProxy = A4000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B0000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		B0000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		B1000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AgentFS/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.turso.agentfs.host;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		B1000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AgentFS/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.turso.agentfs.host;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		B2000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AgentFSExtension/AgentFSExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/AgentFSExtension",
+					"$(SRCROOT)/../fskit-ffi",
+				);
+				INFOPLIST_FILE = AgentFSExtension/ExtensionInfo.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../fskit-ffi/target/release",
+					"$(SRCROOT)/../fskit-ffi/target/debug",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-lagentfs_ffi",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.turso.agentfs.host.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AgentFSExtension/agentfs_ffi.h";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		B2000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AgentFSExtension/AgentFSExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/AgentFSExtension",
+					"$(SRCROOT)/../fskit-ffi",
+				);
+				INFOPLIST_FILE = AgentFSExtension/ExtensionInfo.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../fskit-ffi/target/release",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-lagentfs_ffi",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.turso.agentfs.host.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AgentFSExtension/agentfs_ffi.h";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9000000 /* Build configuration list for PBXProject "AgentFS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0000001 /* Debug */,
+				B0000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9000001 /* Build configuration list for PBXNativeTarget "AgentFS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1000001 /* Debug */,
+				B1000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9000002 /* Build configuration list for PBXNativeTarget "AgentFSExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2000001 /* Debug */,
+				B2000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0000001 /* Project object */;
+}
