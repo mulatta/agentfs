@@ -37,6 +37,7 @@ uuid = { version = "1", features = ["v4"] }
 # macOS FUSE dependency (only included with force-fuse feature)
 [target.'cfg(target_os = "macos")'.dependencies]
 fuser = { version = "0.15", default-features = false, features = ["abi-7-23", "libfuse"], optional = true }
+uuid = { version = "1", features = ["v4"] }
 
 # Sandbox dependencies - Linux x86_64 only (requires libunwind-ptrace)
 [target.'cfg(all(target_os = "linux", target_arch = "x86_64"))'.dependencies]
