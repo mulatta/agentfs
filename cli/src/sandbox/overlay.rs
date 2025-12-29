@@ -445,52 +445,19 @@ fn run_child(
 /// Remount all filesystems as read-only, except for the specified paths.
 ///
 /// The correct sequence to keep allowed paths writable:
-/// 1. Bind-mount each allowed path to itself (creates new mountpoint)
-/// 2. Remount each with explicit rw,bind to lock in the rw flag
-/// 3. THEN remount / and other mounts as read-only
+/// 1. First remount / and other mounts as read-only
+/// 2. THEN bind-mount each allowed path to itself (creates new mountpoint)
+/// 3. Remount each with explicit rw,bind to ensure writability
 ///
-/// This works because bind mounts established before the ro remount
-/// retain their own mount options.
+/// This order is critical because the read-only remounts use MS_REC (recursive)
+/// which would otherwise override any earlier bind mounts on allowed paths.
+/// By creating the allowed path bind mounts AFTER the read-only remounts,
+/// they take precedence and remain writable.
 fn remount_all_readonly_except(
     writable_path: &Path,
     allowed_paths: &[PathBuf],
 ) -> std::io::Result<()> {
-    // Step 1: Bind-mount allowed paths to themselves FIRST
-    // This creates independent mountpoints that will survive the ro remount
-    for allowed in allowed_paths {
-        let path_cstr = match CString::new(allowed.as_os_str().as_bytes()) {
-            Ok(s) => s,
-            Err(_) => continue,
-        };
-
-        // Bind mount to itself to establish new mountpoint (inherits rw)
-        // SAFETY: mount() with valid paths
-        let bind_result = unsafe {
-            libc::mount(
-                path_cstr.as_ptr(),
-                path_cstr.as_ptr(),
-                std::ptr::null(),
-                libc::MS_BIND,
-                std::ptr::null(),
-            )
-        };
-
-        if bind_result == 0 {
-            // Step 2: Explicitly remount with rw,bind to lock in the rw flag
-            // SAFETY: mount() with valid path
-            let _ = unsafe {
-                libc::mount(
-                    std::ptr::null(),
-                    path_cstr.as_ptr(),
-                    std::ptr::null(),
-                    libc::MS_BIND | libc::MS_REMOUNT,
-                    std::ptr::null(),
-                )
-            };
-        }
-    }
-
-    // Step 3: Now remount everything else as read-only
+    // Step 1: Remount everything as read-only FIRST
     let mountinfo = std::fs::File::open("/proc/self/mountinfo")?;
     let reader = std::io::BufReader::new(mountinfo);
 
@@ -575,6 +542,41 @@ fn remount_all_readonly_except(
                 std::ptr::null(),
             )
         };
+    }
+
+    // Step 2: Now bind-mount allowed paths to themselves AFTER the read-only remounts
+    // This creates independent mountpoints that override any inherited read-only state
+    for allowed in allowed_paths {
+        let path_cstr = match CString::new(allowed.as_os_str().as_bytes()) {
+            Ok(s) => s,
+            Err(_) => continue,
+        };
+
+        // Bind mount to itself to establish new mountpoint
+        // SAFETY: mount() with valid paths
+        let bind_result = unsafe {
+            libc::mount(
+                path_cstr.as_ptr(),
+                path_cstr.as_ptr(),
+                std::ptr::null(),
+                libc::MS_BIND,
+                std::ptr::null(),
+            )
+        };
+
+        if bind_result == 0 {
+            // Step 3: Explicitly remount with rw,bind to ensure writability
+            // SAFETY: mount() with valid path
+            let _ = unsafe {
+                libc::mount(
+                    std::ptr::null(),
+                    path_cstr.as_ptr(),
+                    std::ptr::null(),
+                    libc::MS_BIND | libc::MS_REMOUNT,
+                    std::ptr::null(),
+                )
+            };
+        }
     }
 
     Ok(())
