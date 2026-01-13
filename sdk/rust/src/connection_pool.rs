@@ -11,7 +11,7 @@ use turso::{Connection, Database};
 use crate::error::{Error, Result};
 
 /// Maximum number of connections in the pool.
-const MAX_CONNECTIONS: usize = 1;
+const MAX_CONNECTIONS: usize = 2;
 
 /// Default timeout for acquiring a connection from the pool.
 const DEFAULT_TIMEOUT: Duration = Duration::from_secs(30);
